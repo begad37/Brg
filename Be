@@ -3,93 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لعبة التخمين المرعبة</title>
+    <title>موقع السيرة النبوية</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-            background: linear-gradient(to right, #141e30, #243b55);
-            color: white;
-            transition: all 1s ease;
-        }
-        h1 {
-            font-size: 2.5rem;
-            margin-top: 50px;
-        }
-        input, button {
-            font-size: 1.2rem;
-            padding: 10px;
-            margin: 10px;
-            border-radius: 5px;
-            border: none;
-        }
-        input {
-            width: 200px;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fc;
+            color: #004d4d;
             text-align: center;
         }
-        button {
-            background-color: #ff4757;
+        .header {
+            width: 100%;
+            padding: 15px;
+            background: #004d4d;
             color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .header img {
+            width: 100px;
+            height: auto;
+            margin-left: 15px;
             cursor: pointer;
+        }
+        .nav {
+            display: flex;
+            gap: 15px;
+            margin-right: 15px;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 8px 12px;
+            border-radius: 5px;
             transition: 0.3s;
         }
-        button:hover {
-            background-color: #ff6b81;
+        .nav a:hover {
+            background: #007777;
         }
-        #message {
-            font-size: 1.5rem;
-            margin-top: 20px;
+        .container {
+            margin-top: 100px;
+            padding: 20px;
         }
-        .hidden {
-            display: none;
+        .search-box {
+            max-width: 400px;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        .gallery img {
-            width: 150px;
-            height: 150px;
-            margin: 10px;
-            border-radius: 10px;
+        .search-box input {
+            width: 100%;
+            padding: 8px;
+            border: none;
+            outline: none;
+            background: none;
+            font-size: 16px;
+            color: #004d4d;
+        }
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25d366;
+            color: white;
+            padding: 12px 15px;
+            border-radius: 50%;
+            font-size: 24px;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+        }
+        .whatsapp-btn:hover {
+            background: #1ebf5a;
         }
     </style>
 </head>
 <body>
 
-    <h1>🎮 لعبة التخمين</h1>
-    <p>اختر رقمًا بين 1 و 10، وإذا لم تخمن الرقم الصحيح، سيتم مسح جميع صورك! 😈</p>
-    
-    <input type="number" id="guess" placeholder="اكتب رقمك هنا">
-    <button onclick="checkGuess()">تحقق</button>
-
-    <p id="message"></p>
-
-    <div class="gallery">
-        <img src="https://via.placeholder.com/150" alt="صورة 1">
-        <img src="https://via.placeholder.com/150" alt="صورة 2">
-        <img src="https://via.placeholder.com/150" alt="صورة 3">
-        <img src="https://via.placeholder.com/150" alt="صورة 4">
+    <div class="header">
+        <a href="/">
+            <img src="https://i.postimg.cc/N0190wBN/Picsart-25-02-13-17-03-49-160.png" alt="لوجو الموقع">
+        </a>
+        <div class="nav">
+            <a href="#">السيرة النبوية</a>
+            <a href="#">الأحاديث</a>
+            <a href="#">البحث</a>
+            <a href="#">تواصل معنا</a>
+        </div>
     </div>
 
-    <script>
-        let randomNumber = Math.floor(Math.random() * 10) + 1;
+    <div class="container">
+        <div class="search-box">
+            <input type="text" placeholder="ابحث عن حديث أو قصة...">
+        </div>
+        <h2>مرحبًا بك في موقع السيرة النبوية</h2>
+        <p>اكتشف الأحاديث الصحيحة وتفاصيل حياة النبي ﷺ.</p>
+    </div>
 
-        function checkGuess() {
-            let userGuess = document.getElementById("guess").value;
-            let message = document.getElementById("message");
-            let images = document.querySelectorAll(".gallery img");
-
-            if (parseInt(userGuess) === randomNumber) {
-                message.innerHTML = "🎉 مبروك! لقد فزت!";
-            } else {
-                message.innerHTML = "❌ خطأ! يتم الآن حذف جميع صورك... 😱";
-
-                // بعد ثانيتين، تختفي الصور وتظهر رسالة مرعبة
-                setTimeout(() => {
-                    images.forEach(img => img.style.display = "none");
-                    document.body.style.background = "black";
-                    document.body.innerHTML = "<h1 style='color:red; margin-top:20%; font-size:3rem;'>❌ تم حذف جميع صورك</h1>";
-                }, 2000);
-            }
-        }
-    </script>
+    <a class="whatsapp-btn" href="https://wa.me/201093920443" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/WhatsApp.svg" alt="واتساب" style="width: 30px; height: 30px;">
+    </a>
 
 </body>
 </html>
