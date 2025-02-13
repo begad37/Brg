@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لعبة التخمين الخطيرة</title>
+    <title>لعبة التخمين المرعبة</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -40,17 +40,33 @@
             font-size: 1.5rem;
             margin-top: 20px;
         }
+        .hidden {
+            display: none;
+        }
+        .gallery img {
+            width: 150px;
+            height: 150px;
+            margin: 10px;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
 
     <h1>🎮 لعبة التخمين</h1>
-    <p>اختر رقمًا بين 1 و 10، وإذا لم تخمن الرقم الصحيح، سيتم إغلاق المتصفح! 😈</p>
+    <p>اختر رقمًا بين 1 و 10، وإذا لم تخمن الرقم الصحيح، سيتم مسح جميع صورك! 😈</p>
     
     <input type="number" id="guess" placeholder="اكتب رقمك هنا">
     <button onclick="checkGuess()">تحقق</button>
 
     <p id="message"></p>
+
+    <div class="gallery">
+        <img src="https://via.placeholder.com/150" alt="صورة 1">
+        <img src="https://via.placeholder.com/150" alt="صورة 2">
+        <img src="https://via.placeholder.com/150" alt="صورة 3">
+        <img src="https://via.placeholder.com/150" alt="صورة 4">
+    </div>
 
     <script>
         let randomNumber = Math.floor(Math.random() * 10) + 1;
@@ -58,16 +74,18 @@
         function checkGuess() {
             let userGuess = document.getElementById("guess").value;
             let message = document.getElementById("message");
+            let images = document.querySelectorAll(".gallery img");
 
             if (parseInt(userGuess) === randomNumber) {
                 message.innerHTML = "🎉 مبروك! لقد فزت!";
             } else {
-                message.innerHTML = "❌ خطأ! سيتم إغلاق المتصفح الآن... 😱";
-                
-                // بعد ثانيتين، سيتم إغلاق المتصفح
+                message.innerHTML = "❌ خطأ! يتم الآن حذف جميع صورك... 😱";
+
+                // بعد ثانيتين، تختفي الصور وتظهر رسالة مرعبة
                 setTimeout(() => {
-                    window.open('', '_self').close(); // قد لا يعمل في بعض المتصفحات
-                    window.location.href = "about:blank"; // يجعل الصفحة فارغة
+                    images.forEach(img => img.style.display = "none");
+                    document.body.style.background = "black";
+                    document.body.innerHTML = "<h1 style='color:red; margin-top:20%; font-size:3rem;'>❌ تم حذف جميع صورك</h1>";
                 }, 2000);
             }
         }
